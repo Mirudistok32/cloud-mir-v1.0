@@ -11,7 +11,7 @@ const initialState: InitialStateType = {
 
 type ActionsTypes = InferActionsTypes<typeof actionsFileReducer>
 
-const fileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+export const fileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
 
         default:

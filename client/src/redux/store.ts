@@ -1,9 +1,12 @@
+import { fileReducer } from './reducers/file-reducer';
+import { userReducer } from './reducers/user-reducer';
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 const rootReducers = combineReducers({
-
+    userReducer,
+    fileReducer
 })
 
 type RootReducersType = typeof rootReducers

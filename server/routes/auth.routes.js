@@ -22,6 +22,7 @@ router.post("/registration", async (req, res) => {
 
     //В целях безопастности, хешируем пароль
     const hashPassword = await bcript.hash(password, 8);
+    // Создаем нового пользователя
     const user = new User({ email, password: hashPassword });
 
     // Теперь, сохраняем пользователя в базе данных

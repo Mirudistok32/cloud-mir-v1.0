@@ -12,5 +12,13 @@
     "mirudistok"
   ],
   "author": "Stanislav Postnikov (mirudistok32@gmail.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }

@@ -1,3 +1,4 @@
 {
-  "serverPort": 5007
+  "serverPort": 5007,
+  "dbUrl": "mongodb+srv://mirudistok32:Mirudistok011163352097636011163mongodb@cluster0.frksr.mongodb.net/cloud-mir?retryWrites=true&w=majority"
 }

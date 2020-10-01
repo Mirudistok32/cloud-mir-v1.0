@@ -1,0 +1,16 @@
+{
+  "name": "cloud-mir-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "server",
+    "cloud",
+    "mirudistok"
+  ],
+  "author": "Stanislav Postnikov (mirudistok32@gmail.com)",
+  "license": "ISC"
+}

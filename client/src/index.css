@@ -4,8 +4,13 @@ body,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  min-height: 100vh;
+  min-height: 100%;
   font-family: "Roboto", sans-serif;
+  width: 100%;
+}
+
+body {
+  background-color: #e9e6e6;
 }
 
 *,

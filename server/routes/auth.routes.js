@@ -1,8 +1,11 @@
 const Router = require("express"); // Роуты из экспресса
-const User = require("../models/User.js"); // Модель пользователя, которую мы создали
-const bcript = require("bcryptjs"); // Для хеширования
+const User = require("../models/User"); // Модель пользователя, которую мы создали
+const bcrypt = require("bcryptjs"); // Для хеширования
+const config = require("config");
+const jwt = require("jsonwebtoken"); // Для создания токена
 const { check, validationResult } = require("express-validator"); // Для валидации данных
 const router = new Router(); // Объект роутера
+
 
 // Под-запрос
 // Вторым параметром, передаем массив, здесь будет происходить валидация
@@ -40,7 +43,7 @@ router.post(
       //Если в условие выше не попали, то создаем нового пользователя
 
       //В целях безопастности, хешируем пароль
-      const hashPassword = await bcript.hash(password, 8);
+      const hashPassword = await bcrypt.hash(password, 8);
       // Создаем нового пользователя
       const user = new User({ email, password: hashPassword });
 
@@ -56,5 +59,47 @@ router.post(
     }
   }
 );
+
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "Uset not found" });
+    }
+    // Если пользователь найден, сравниваем пароль полученный в запросе, с паролем, который хранится в базе данных
+    // Функция compareSync сравниваем незашифрованный пароль, с зашифрованным
+    const isPassValid = bcrypt.compareSync(password, user.password);
+    // Если пароли совпадают, то функция вернет true, а иначе отправляем ошибку
+    if (!isPassValid) {
+      return res.status(400).json({ message: "Invalid data" });
+    }
+
+    // Создаем token
+    // Первым параметром передаем объект с данными, которые мы хотим поместить в токен
+    // Вторым параметром передаем секретный ключ, по-которому будет происходить шифрование
+    // Третим параметром, передаем объект, в котором указываем, сколько времени токен будет существовать
+    const token = jwt.sign({ id: user.id }, config.get("secretKey"), {
+      expiresIn: "1h",
+    });
+    // После создания токена, нам необходимо вернуть его обратно на клиент
+    // также возвращаем дополнительные данные.
+    return res.json({
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        diskSpace: user.diskSpace,
+        usedSpace: user.usedSpace,
+        avatar: user.avatar,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    // отправляем пользователю ответ, где указываем, что пользователь был создан
+    res.send({ messages: "Server error" });
+  }
+});
 
 module.exports = router;

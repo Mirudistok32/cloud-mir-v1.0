@@ -3,12 +3,12 @@ import s from './FormRegistration.module.scss'
 import * as Yup from 'yup'
 import { FormikConfig, useFormik } from 'formik'
 
-type FormType = {
+export type FormRegistrationType = {
     email: string
     password: string
 }
 type PropsType = {
-    onSubmit: (values: FormType) => void
+    onSubmit: (values: FormRegistrationType) => void
 }
 
 export const FormRegistration: React.FC<PropsType> = React.memo((props) => {
@@ -29,7 +29,7 @@ export const FormRegistration: React.FC<PropsType> = React.memo((props) => {
     });
 
 
-    const formikConfig: FormikConfig<FormType> = {
+    const formikConfig: FormikConfig<FormRegistrationType> = {
         initialValues: {
             email: '',
             password: ''

@@ -52,7 +52,7 @@ export const FormRegistration: React.FC<PropsType> = React.memo((props) => {
                     <input
                         className={s['form__row-input']}
                         type="text"
-                        name="password"
+                        name="email"
                         onChange={formik.handleChange}
                         value={formik.values.email}
                     />

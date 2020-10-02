@@ -1,15 +1,20 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { FormRegistration } from '../FormRegistration/FormRegistration';
 import { Navbar } from '../Navbar/Navbar';
 import s from './App.module.scss';
 
 function App() {
   return (
     <div className={s.app}>
-      <Navbar />
-      <Switch>
-        
-      </Switch>
+      <div className={s.app__container}>
+        <Navbar />
+        <div className={s.app__switch}>
+          <Switch>
+            <Route path="/registration" render={() => <FormRegistration />} />
+          </Switch>
+        </div>
+      </div>
     </div>
   );
 }

@@ -4,11 +4,13 @@ import { FormRegistration } from '../FormRegistration/FormRegistration';
 import { Navbar } from '../Navbar/Navbar';
 import { FormRegistrationType } from '../FormRegistration/FormRegistration'
 import s from './App.module.scss';
+import { registrationAPI } from '../../api/users-api'
 
 function App() {
 
   const onSubmitFormRegistration = (values: FormRegistrationType) => {
-
+    const { email, password } = values
+    registrationAPI(email, password)
   }
 
   return (

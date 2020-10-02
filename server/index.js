@@ -4,7 +4,11 @@ const config = require("config");
 const authRouter = require("./routes/auth.routes");
 const app = express();
 const PORT = config.get("serverPort");
+const corsMiddleware = require("./middleware/cors.middleware");
 
+
+// Передаем нам CORS middleware
+app.use(corsMiddleware);
 // Явно указываем, чтобы экспресс распарсил строку
 app.use(express.json());
 // Первым параметром указываем url, по которому этот роутер будет обрабатываться,

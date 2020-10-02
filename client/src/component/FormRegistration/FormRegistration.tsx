@@ -36,6 +36,7 @@ export const FormRegistration: React.FC<PropsType> = React.memo((props) => {
         },
         onSubmit: (values, { resetForm }) => {
             onSubmit(values)
+            resetForm()
         },
         validationSchema
     }
@@ -77,7 +78,7 @@ export const FormRegistration: React.FC<PropsType> = React.memo((props) => {
                     }
                 </label>
             </div>
-            <button className={s.form__btn} type="submit">Логин</button>
+            <button className={s.form__btn} type="submit">Регистрация</button>
         </form >
     )
 })

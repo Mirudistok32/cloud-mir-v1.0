@@ -44,7 +44,7 @@ export const authAPI = (): ThunkAction<Promise<void>, AppStateType, unknown, Act
             dispatch(actionsUserReducer.setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (error) {
-            alert(error)
+            alert(error.response.data.message)
             localStorage.removeItem('token')
         }
     }

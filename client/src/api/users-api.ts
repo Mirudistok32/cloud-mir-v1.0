@@ -32,14 +32,20 @@ export const loginAPI = (email: string, password: string): ThunkAction<Promise<v
         }
     }
 }
-export const loginOutAPI = (): ThunkAction<Promise<void>, AppStateType, unknown, Action> => {
+export const authAPI = (): ThunkAction<Promise<void>, AppStateType, unknown, Action> => {
     return async dispatch => {
         try {
-            // const response = await axios.post(`http://localhost:5007/api/auth/login`)
-            dispatch(actionsUserReducer.loginOut())
-
+            // В header запроса добавляем token
+            const response = await axios.get(`http://localhost:5007/api/auth/auth`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            dispatch(actionsUserReducer.setUser(response.data.user))
+            localStorage.setItem('token', response.data.token)
         } catch (error) {
             alert(error)
+            localStorage.removeItem('token')
         }
     }
 }

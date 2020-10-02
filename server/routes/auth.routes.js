@@ -103,7 +103,7 @@ router.post("/login", async (req, res) => {
 });
 
 // Вторым параметром передаем Middleware
-router.post("/auth", authMiddleware, async (req, res) => {
+router.get("/auth", authMiddleware, async (req, res) => {
   try {
     // Ищем польователя по id, который мы достали из token
     const user = await User.findOne({ id: req.user.id });

@@ -4,7 +4,7 @@ import logo from '../../assets/images/logo.svg'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../../redux/store'
-import { loginOutAPI } from '../../api/users-api'
+import { actionsUserReducer } from '../../redux/reducers/user-reducer'
 
 type PropsType = {
 
@@ -22,7 +22,7 @@ export const Navbar: React.FC<PropsType> = React.memo((props) => {
             <div className={s.navbar__header}>MERN CLOUD</div>
             {!isAuth && <div className={s.navbar__login}><NavLink to={'/login'}>Войти</NavLink></div>}
             {!isAuth && <div className={s.navbar__registration}><NavLink to={'/registration'}>Регистрация</NavLink></div>}
-            {isAuth && <div className={s.navbar__login} onClick={() => dispatch(loginOutAPI())}>Выйти</div>}
+            {isAuth && <div className={s.navbar__login} onClick={() => dispatch(actionsUserReducer.loginOut())}>Выйти</div>}
         </div>
     )
 })

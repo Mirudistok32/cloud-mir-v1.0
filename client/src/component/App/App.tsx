@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { FormRegistration } from '../FormRegistration/FormRegistration';
 import { Navbar } from '../Navbar/Navbar';
 import { FormRegistrationType } from '../FormRegistration/FormRegistration'
 import { FormLogin } from '../FormLogin/FormLogin'
 import s from './App.module.scss';
-import { loginAPI, registrationAPI } from '../../api/users-api'
+import { authAPI, loginAPI, registrationAPI } from '../../api/users-api'
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/store';
 
@@ -21,6 +21,10 @@ function App() {
     const { email, password } = values
     dispatch(loginAPI(email, password))
   }
+
+  useEffect(() => {
+    dispatch(authAPI())
+  }, [])
 
   return (
     <div className={s.app}>

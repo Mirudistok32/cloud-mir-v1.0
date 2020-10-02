@@ -5,7 +5,7 @@ export type CurrentUserType = {
     email: string | null
     diskSpace: number | null
     usedSpace: number | null
-    avatar: string | null
+    avatar?: string | null
 }
 type InitialStateType = {
     currentUser: CurrentUserType,
@@ -27,7 +27,9 @@ type ActionsTypes = InferActionsTypes<typeof actionsUserReducer>
 
 export const userReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-
+        case "MIRUDISTOK/USER/SET_USERS": {
+            return { ...state, currentUser: { ...action.payload } }
+        }
         default:
             return state
     }
@@ -35,5 +37,5 @@ export const userReducer = (state = initialState, action: ActionsTypes): Initial
 
 
 export const actionsUserReducer = {
-
+    setUser: (user: CurrentUserType) => ({ type: "MIRUDISTOK/USER/SET_USERS", payload: user } as const)
 }

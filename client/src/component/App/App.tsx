@@ -6,16 +6,19 @@ import { FormRegistrationType } from '../FormRegistration/FormRegistration'
 import { FormLogin } from '../FormLogin/FormLogin'
 import s from './App.module.scss';
 import { loginAPI, registrationAPI } from '../../api/users-api'
+import { useDispatch, useSelector } from 'react-redux';
+import { AppStateType } from '../../redux/store';
 
 function App() {
 
+  const dispatch = useDispatch()
   const onSubmitFormRegistration = (values: FormRegistrationType) => {
     const { email, password } = values
     registrationAPI(email, password)
   }
   const onSubmitFormLogin = (values: FormRegistrationType) => {
     const { email, password } = values
-    loginAPI(email, password)
+    dispatch(loginAPI(email, password))
   }
 
   return (

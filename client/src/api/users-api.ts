@@ -32,3 +32,14 @@ export const loginAPI = (email: string, password: string): ThunkAction<Promise<v
         }
     }
 }
+export const loginOutAPI = (): ThunkAction<Promise<void>, AppStateType, unknown, Action> => {
+    return async dispatch => {
+        try {
+            // const response = await axios.post(`http://localhost:5007/api/auth/login`)
+            dispatch(actionsUserReducer.loginOut())
+
+        } catch (error) {
+            alert(error)
+        }
+    }
+}

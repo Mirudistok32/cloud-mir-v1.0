@@ -2,8 +2,9 @@ import React from 'react'
 import s from './Navbar.module.scss'
 import logo from '../../assets/images/logo.svg'
 import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../../redux/store'
+import { loginOutAPI } from '../../api/users-api'
 
 type PropsType = {
 
@@ -12,7 +13,7 @@ type PropsType = {
 export const Navbar: React.FC<PropsType> = React.memo((props) => {
 
     const { } = props
-
+    const dispatch = useDispatch()
     const isAuth = useSelector((state: AppStateType) => state.userReducer.isAuth)
 
     return (
@@ -21,7 +22,7 @@ export const Navbar: React.FC<PropsType> = React.memo((props) => {
             <div className={s.navbar__header}>MERN CLOUD</div>
             {!isAuth && <div className={s.navbar__login}><NavLink to={'/login'}>Войти</NavLink></div>}
             {!isAuth && <div className={s.navbar__registration}><NavLink to={'/registration'}>Регистрация</NavLink></div>}
-            {isAuth && <div className={s.navbar__login}><NavLink to={'/registration'}>Выйти</NavLink></div>}
+            {isAuth && <div className={s.navbar__login} onClick={() => dispatch(loginOutAPI())}>Выйти</div>}
         </div>
     )
 })

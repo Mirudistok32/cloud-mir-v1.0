@@ -8,18 +8,12 @@ export type CurrentUserType = {
     avatar?: string | null
 }
 type InitialStateType = {
-    currentUser: CurrentUserType,
+    currentUser: null | CurrentUserType,
     isAuth: boolean
 }
 
 const initialState: InitialStateType = {
-    currentUser: {
-        avatar: null as string | null,
-        id: null as string | null,
-        email: null as string | null,
-        diskSpace: null as number | null,
-        usedSpace: null as number | null
-    },
+    currentUser: null as CurrentUserType | null,
     isAuth: false
 }
 
@@ -30,6 +24,10 @@ export const userReducer = (state = initialState, action: ActionsTypes): Initial
         case "MIRUDISTOK/USER/SET_USERS": {
             return { ...state, ...action.payload }
         }
+        case "MIRUDISTOK/USER/LOGIN_OUT": {
+            localStorage.removeItem('token')
+            return { ...state, ...action.payload }
+        }
         default:
             return state
     }
@@ -37,5 +35,6 @@ export const userReducer = (state = initialState, action: ActionsTypes): Initial
 
 
 export const actionsUserReducer = {
-    setUser: (currentUser: CurrentUserType) => ({ type: "MIRUDISTOK/USER/SET_USERS", payload: { currentUser, isAuth: true } } as const)
+    setUser: (currentUser: CurrentUserType) => ({ type: "MIRUDISTOK/USER/SET_USERS", payload: { currentUser, isAuth: true } } as const),
+    loginOut: () => ({ type: "MIRUDISTOK/USER/LOGIN_OUT", payload: { currentUser: null, isAuth: false, } } as const),
 }

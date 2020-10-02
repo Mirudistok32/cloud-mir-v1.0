@@ -12,6 +12,7 @@ import { AppStateType } from '../../redux/store';
 function App() {
 
   const dispatch = useDispatch()
+  const isAuth = useSelector((state: AppStateType) => state.userReducer.isAuth)
   const onSubmitFormRegistration = (values: FormRegistrationType) => {
     const { email, password } = values
     registrationAPI(email, password)
@@ -26,10 +27,14 @@ function App() {
       <div className={s.app__container}>
         <Navbar />
         <div className={s.app__switch}>
-          <Switch>
-            <Route path="/registration" render={() => <FormRegistration onSubmit={onSubmitFormRegistration} />} />
-            <Route path="/login" render={() => <FormLogin onSubmit={onSubmitFormLogin} />} />
-          </Switch>
+          {
+            !isAuth && (
+              <Switch>
+                <Route path="/registration" render={() => <FormRegistration onSubmit={onSubmitFormRegistration} />} />
+                <Route path="/login" render={() => <FormLogin onSubmit={onSubmitFormLogin} />} />
+              </Switch>
+            )
+          }
         </div>
       </div>
     </div>

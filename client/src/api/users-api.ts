@@ -25,7 +25,8 @@ export const loginAPI = (email: string, password: string): ThunkAction<Promise<v
             })
 
             dispatch(actionsUserReducer.setUser(response.data.user))
-            console.log(response.data)
+            // Сохранаем token в localStorage
+            localStorage.setItem('token', response.data.token)
         } catch (error) {
             alert(error)
         }

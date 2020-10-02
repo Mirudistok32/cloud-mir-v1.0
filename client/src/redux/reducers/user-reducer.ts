@@ -28,7 +28,7 @@ type ActionsTypes = InferActionsTypes<typeof actionsUserReducer>
 export const userReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case "MIRUDISTOK/USER/SET_USERS": {
-            return { ...state, currentUser: { ...action.payload } }
+            return { ...state, ...action.payload }
         }
         default:
             return state
@@ -37,5 +37,5 @@ export const userReducer = (state = initialState, action: ActionsTypes): Initial
 
 
 export const actionsUserReducer = {
-    setUser: (user: CurrentUserType) => ({ type: "MIRUDISTOK/USER/SET_USERS", payload: user } as const)
+    setUser: (currentUser: CurrentUserType) => ({ type: "MIRUDISTOK/USER/SET_USERS", payload: { currentUser, isAuth: true } } as const)
 }

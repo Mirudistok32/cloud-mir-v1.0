@@ -9,7 +9,7 @@ export type FileType = {
     name: string
     type: string
     accessLink: string
-    size: { type: Number, default: 0 },
+    size: number,
     path: string
     user: string
     date: string

@@ -1,4 +1,5 @@
 .file {
+  padding: 10px 0 ;
   display: grid;
   grid-template-columns: 1fr 4fr repeat(4, 1fr);
   border-bottom: 1px solid lightslategray;

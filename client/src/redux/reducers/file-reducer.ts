@@ -34,6 +34,9 @@ export const fileReducer = (state = initialState, action: ActionsTypes): Initial
         case "MIRUDISTOK/FILE/SET_FILES": {
             return { ...state, ...action.payload }
         }
+        case "MIRUDISTOK/FILE/SET_CURRENT_DIR": {
+            return { ...state, ...action.payload }
+        }
         default:
             return state
     }
@@ -41,5 +44,6 @@ export const fileReducer = (state = initialState, action: ActionsTypes): Initial
 
 
 export const actionsFileReducer = {
-    setFiles: (file: FileType) => ({ type: "MIRUDISTOK/FILE/SET_FILES", payload: file } as const)
+    setFiles: (file: FileType) => ({ type: "MIRUDISTOK/FILE/SET_FILES", payload: file } as const),
+    setCurrentDir: (currentDir: string) => ({ type: "MIRUDISTOK/FILE/SET_CURRENT_DIR", payload: { currentDir } } as const),
 }

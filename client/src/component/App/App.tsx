@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { FormRegistration } from '../FormRegistration/FormRegistration';
 import { Navbar } from '../Navbar/Navbar';
 import { FormRegistrationType } from '../FormRegistration/FormRegistration'
@@ -8,6 +8,7 @@ import s from './App.module.scss';
 import { authAPI, loginAPI, registrationAPI } from '../../api/users-api'
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/store';
+import { Disk } from '../Disk/Disk'
 
 function App() {
 
@@ -32,12 +33,17 @@ function App() {
         <Navbar />
         <div className={s.app__switch}>
           {
-            !isAuth && (
+            !isAuth ?
               <Switch>
                 <Route path="/registration" render={() => <FormRegistration onSubmit={onSubmitFormRegistration} />} />
                 <Route path="/login" render={() => <FormLogin onSubmit={onSubmitFormLogin} />} />
+                <Redirect to="/login" />
               </Switch>
-            )
+              :
+              <Switch>
+                <Route path="/" render={() => <Disk />} />
+                <Redirect to="/" />
+              </Switch>
           }
         </div>
       </div>

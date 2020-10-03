@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
 const authRouter = require("./routes/auth.routes");
+const fileRouter = require("./routes/file.routes");
 const app = express();
 const PORT = config.get("serverPort");
 const corsMiddleware = require("./middleware/cors.middleware");
@@ -14,6 +15,7 @@ app.use(express.json());
 // Первым параметром указываем url, по которому этот роутер будет обрабатываться,
 // а вторым параметром передаем сам роутер
 app.use("/api/auth", authRouter);
+app.use("/api/auth", fileRouter);
 
 // Подключается к базе данных и запускает сервер
 // Подключение к базе данных - это асинхронный процесс

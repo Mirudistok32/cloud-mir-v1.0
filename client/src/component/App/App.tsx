@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     dispatch(authAPI())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={s.app}>

@@ -1,1 +1,18 @@
-.file{}
+.file {
+  display: grid;
+  grid-template-columns: 1fr 4fr repeat(4, 1fr);
+  border-bottom: 1px solid lightslategray;
+  &__img {
+    justify-content: center;
+    background-color: lightslategray;
+    margin: 1px;
+  }
+  &__date {
+    grid-column-start: 5;
+    justify-content: center;
+  }
+  &__size {
+    grid-column-start: 6;
+    justify-content: center;
+  }
+}

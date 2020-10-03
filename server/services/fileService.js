@@ -1,12 +1,10 @@
-const { rejects } = require("assert");
 const fs = require("fs"); // Предназначен для работы с файловой системой
-const { resolve } = require("path");
-const file = require("../models/File");
+const File = require("../models/File");
 const config = require("config");
 
 class FileService {
   // Создает папки
-  createDir(File) {
+  createDir(file) {
     const filePath = `${config.get("filePath")}\\${file.user}\\${file.path}`;
     return new Promise((resolve, rejects) => {
       try {

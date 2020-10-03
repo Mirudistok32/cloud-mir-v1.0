@@ -7,6 +7,8 @@ const { check, validationResult } = require("express-validator"); // Для ва
 const router = new Router(); // Объект роутера
 const authMiddleware = require("../middleware/auth.middleware");
 
+const filesService = require("../services/fileService");
+const File = require("../models/File");
 // Под-запрос
 // Вторым параметром, передаем массив, здесь будет происходить валидация
 router.post(
@@ -49,7 +51,8 @@ router.post(
 
       // Теперь, сохраняем пользователя в базе данных
       await user.save();
-
+      // Создаем для пользователя отдельную папку
+      await filesService.createDir(new File({ user: user.id, name: "" }));
       // Если все хорошо, то возвращаем ответ от сервера
       return res.json({ message: `User was created` });
     } catch (error) {

@@ -2,5 +2,5 @@
   "serverPort": 5007,
   "dbUrl": "mongodb+srv://mirudistok32:Mirudistok011163352097636011163mongodb@cluster0.frksr.mongodb.net/cloud-mir?retryWrites=true&w=majority",
   "secretKey": "forest-team-every-day",
-  "filePath": "C:\\Users\\User\\Desktop\\dev\\it-kamasutra\\cloud-mir-v1.0\\server\files"
+  "filePath": "C:\\Users\\User\\Desktop\\dev\\it-kamasutra\\cloud-mir-v1.0\\server\\files"
 }

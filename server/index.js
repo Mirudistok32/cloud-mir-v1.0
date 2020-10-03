@@ -7,7 +7,6 @@ const app = express();
 const PORT = config.get("serverPort");
 const corsMiddleware = require("./middleware/cors.middleware");
 
-
 // Передаем нам CORS middleware
 app.use(corsMiddleware);
 // Явно указываем, чтобы экспресс распарсил строку

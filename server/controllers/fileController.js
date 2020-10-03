@@ -9,7 +9,7 @@ class FileController {
       const { name, type, parent } = req.body;
       // Создаем новый файл и передадим в него все эти данные
       // id пользователя мы получаем из поля user, которое мы добавляем, когда распарсиваем token
-      const file = new File({ name, type, parent, user: user.id });
+      const file = new File({ name, type, parent, user: req.user.id });
       // по id полученному из запроса, найдем родительский файл
       const parentFile = await File.findOne({ _id: parent });
       if (!parentFile) {

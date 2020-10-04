@@ -1,6 +1,7 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { actionsFileReducer, FileType } from '../../../../redux/reducers/file-reducer'
+import { AppStateType } from '../../../../redux/store'
 import s from './File.module.scss'
 
 type PropsType = {
@@ -11,9 +12,10 @@ type PropsType = {
 export const File: React.FC<PropsType> = (props) => {
 
     const dispatch = useDispatch()
+    const currentDir = useSelector((state: AppStateType) => state.fileReducer.currentDir)
 
     const openDirHandler = () => {
-        console.log(1);
+        dispatch(actionsFileReducer.pushToStack(currentDir))
         dispatch(actionsFileReducer.setCurrentDir(props.file._id))
     }
 

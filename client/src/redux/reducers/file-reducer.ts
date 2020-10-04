@@ -21,14 +21,14 @@ export type FileType = {
 
 type InitialStateType = {
     files: Array<FileType>
-    currentDir: null | string
+    currentDir: string
     isPopup: boolean
     dirStack: Array<string>
 }
 
 const initialState: InitialStateType = {
     files: [],
-    currentDir: null,
+    currentDir: '',
     isPopup: false,
     dirStack: []
 }
@@ -52,9 +52,6 @@ export const fileReducer = (state = initialState, action: ActionsTypes): Initial
         case "MIRUDISTOK/FILE/PUSH_TO_STACK": {
             return { ...state, dirStack: [...state.dirStack, action.payload] }
         }
-        case "MIRUDISTOK/FILE/POP_FROM_STACK": {
-            return { ...state, dirStack: [...state.dirStack, action.payload] }
-        }
         default:
             return state
     }
@@ -66,6 +63,5 @@ export const actionsFileReducer = {
     setCurrentDir: (currentDir: string) => ({ type: "MIRUDISTOK/FILE/SET_CURRENT_DIR", payload: currentDir } as const),
     addFile: (file: FileType) => ({ type: "MIRUDISTOK/FILE/ADD_FILE", payload: file } as const),
     setPopup: (is: boolean) => ({ type: "MIRUDISTOK/FILE/SET_POPUP", payload: is } as const),
-    pushToStack: (id: string) => ({ type: "MIRUDISTOK/FILE/PUSH_TO_STACK", payload: id } as const),
-    popFromStack: (id: string) => ({ type: "MIRUDISTOK/FILE/POP_FROM_STACK", payload: id } as const),
+    pushToStack: (dir: string) => ({ type: "MIRUDISTOK/FILE/PUSH_TO_STACK", payload: dir } as const),
 }

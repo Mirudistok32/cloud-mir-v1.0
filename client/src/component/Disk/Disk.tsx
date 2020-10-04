@@ -10,6 +10,7 @@ export const Disk = () => {
 
     const dispatch = useDispatch()
     const currentDir = useSelector((state: AppStateType) => state.fileReducer.currentDir)
+    const dirStack = useSelector((state: AppStateType) => state.fileReducer.dirStack)
 
     useEffect(() => {
         dispatch(getFiles(currentDir))
@@ -20,7 +21,10 @@ export const Disk = () => {
     }
 
     const backClickHandler = () => {
-        
+        const backDirId = dirStack.pop()
+        if (backDirId) {
+            dispatch(actionsFileReducer.setCurrentDir(backDirId))
+        }
     }
     return (
         <div className={s.disk}>
@@ -28,7 +32,7 @@ export const Disk = () => {
                 <button
                     className={s.disk__back}
                     onClick={() => backClickHandler()}
-                    >Назад</button>
+                >Назад</button>
                 <button
                     className={s.disk__create}
                     onClick={() => createHandler()}

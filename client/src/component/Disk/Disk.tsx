@@ -5,6 +5,7 @@ import s from './Disk.module.scss'
 import { createDir, getFiles } from '../../api/file-api'
 import { FileList } from './FileList/FileList'
 import { Popup } from './Popup/Popup'
+import { actionsFileReducer } from '../../redux/reducers/file-reducer'
 export const Disk = () => {
 
     const dispatch = useDispatch()
@@ -15,7 +16,7 @@ export const Disk = () => {
     }, [currentDir, dispatch])
 
     const createHandler = () => {
-        dispatch(createDir(currentDir, `create${new Date().getSeconds()}`))
+        dispatch(actionsFileReducer.setPopup(true))
     }
     return (
         <div className={s.disk}>

@@ -18,11 +18,17 @@ export const Disk = () => {
     const createHandler = () => {
         dispatch(actionsFileReducer.setPopup(true))
     }
+
+    const backClickHandler = () => {
+        
+    }
     return (
         <div className={s.disk}>
             <div className={s.disk__btns}>
                 <button
-                    className={s.disk__back}>Назад</button>
+                    className={s.disk__back}
+                    onClick={() => backClickHandler()}
+                    >Назад</button>
                 <button
                     className={s.disk__create}
                     onClick={() => createHandler()}

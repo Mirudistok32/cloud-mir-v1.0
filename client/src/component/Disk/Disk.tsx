@@ -4,6 +4,7 @@ import { AppStateType } from '../../redux/store'
 import s from './Disk.module.scss'
 import { createDir, getFiles } from '../../api/file-api'
 import { FileList } from './FileList/FileList'
+import { Popup } from './Popup/Popup'
 export const Disk = () => {
 
     const dispatch = useDispatch()
@@ -27,6 +28,7 @@ export const Disk = () => {
                 >Создать папку</button>
             </div >
             <FileList />
+            <Popup />
         </div >
     )
 }

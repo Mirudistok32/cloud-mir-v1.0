@@ -30,7 +30,7 @@ export const createDir = (dirId: any, name: string): ThunkAction<Promise<void>, 
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 }
             )
-            dispatch(actionsFileReducer.setFiles(response.data))
+            dispatch(actionsFileReducer.addFile(response.data))
             console.log(response.data)
         } catch (error) {
             alert(error.response.data.message)

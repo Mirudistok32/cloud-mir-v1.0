@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../../redux/store'
 import s from './Disk.module.scss'
-import { getFiles } from '../../api/file-api'
+import { createDir, getFiles } from '../../api/file-api'
 import { FileList } from './FileList/FileList'
 export const Disk = () => {
 
@@ -13,13 +13,18 @@ export const Disk = () => {
         dispatch(getFiles(currentDir))
     }, [currentDir, dispatch])
 
+    const createHandler = () => {
+        dispatch(createDir(currentDir, `create${new Date().getSeconds()}`))
+    }
     return (
         <div className={s.disk}>
             <div className={s.disk__btns}>
                 <button
                     className={s.disk__back}>Назад</button>
                 <button
-                    className={s.disk__create}>Создать папку</button>
+                    className={s.disk__create}
+                    onClick={() => createHandler()}
+                >Создать папку</button>
             </div >
             <FileList />
         </div >
